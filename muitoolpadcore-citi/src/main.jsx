@@ -11,16 +11,20 @@ import keycloakComponent from './keycloak/keycloakComponent';
 // import Layout from './layouts/dashboard';
 // import DashboardPage from './pages';
 // import EmployeesCrudPage from './pages/employees';
+import NotFound from './components/NotFound';
 const App = React.lazy(() => import('./App'));
 const Layout = React.lazy(() => import('./layouts/dashboard'));
 const DashboardPage = React.lazy(() => import('./pages'));
 const EmployeesCrudPage = React.lazy(() => import('./pages/employees'));
+const undermaintenance = React.lazy(()=> import('./components/UnderMaintenance'));
+
 
 
 const router = createBrowserRouter([
   {
     Component: App,
     children: [
+      { path: '*', Component: NotFound },
       {
         path: '/',
         Component: Layout,
@@ -33,8 +37,13 @@ const router = createBrowserRouter([
             path: 'employees/:employeeId?/*',
             Component: EmployeesCrudPage,
           },
+          {
+            path: 'movies/lord-of-the-rings',
+            Component: undermaintenance,
+          },
         ],
       },
+      
     ],
   },
 ]);

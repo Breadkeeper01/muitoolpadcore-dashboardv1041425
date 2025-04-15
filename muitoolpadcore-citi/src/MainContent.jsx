@@ -71,13 +71,7 @@ import { ReactRouterAppProvider } from "@toolpad/core/react-router";
 import { customTheme } from "./theme/themeprovider";
 import { useKeycloak } from "@react-keycloak/web";
 
-const demoSession = {
-  user: {
-    name: "Bharat Kashyap",
-    email: "bharatkashyap@outlook.com",
-    image: "https://avatars.githubusercontent.com/u/19550456",
-  },
-};
+
 
 const NAVIGATION = [
   {
@@ -115,11 +109,22 @@ const NAVIGATION = [
 
 const BRANDING = {
   title: "TREASURY SYSTEM",
+  logo: <img src="/img/ch-logo.jpg" alt="citi logo"/>
 };
 
 const MainContent = () => {
   const { keycloak } = useKeycloak();
-  const [session, setSession] = React.useState(demoSession);
+  console.log("keycloak.id", keycloak.idTokenParsed.name);
+
+  const currentSession = {
+    user: {
+      name: keycloak.idTokenParsed.name,
+      email: keycloak.idTokenParsed.email,
+      image: "https://avatars.githubusercontent.com/u/19550456",
+    },
+  };
+
+  const [session, setSession] = React.useState(currentSession);
 
   const authentication = {
     signIn: () => {
