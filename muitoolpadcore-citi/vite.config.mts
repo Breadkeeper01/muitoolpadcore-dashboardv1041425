@@ -11,7 +11,7 @@ export default defineConfig({
         origin: '*'   // Allows cross-origin requests from any origin
     },
     hmr: {
-        host: '172.20.3.16', // Your LAN IP, so HMR uses your network address
+        host: '172.20.50.177', // Your LAN IP, so HMR uses your network address
         port: 5173,          // Must match Vite's port
     },
 },
